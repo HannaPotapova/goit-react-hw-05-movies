@@ -1,13 +1,14 @@
 import { Link } from 'components/App.styled';
 
-const TrendingFilmItems = ({ movieDay, state }) => {
+const TrendingList = ({ movieDay }) => {
+
   return (
     <ul>
       {movieDay.map(({ id, title, name }) => (
         <li key={id}>
           <Link
             to={`movies/${id}`}
-            state={state}
+            state={{ from: '/' }}
           >
             {title || name}
           </Link>
@@ -17,4 +18,4 @@ const TrendingFilmItems = ({ movieDay, state }) => {
   );
 };
 
-export default TrendingFilmItems;
+export default TrendingList;

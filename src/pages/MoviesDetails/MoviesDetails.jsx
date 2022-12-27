@@ -2,7 +2,7 @@ import { useState, useEffect, Suspense } from 'react';
 import { Outlet, useParams, useLocation } from 'react-router-dom';
 import { Loader } from 'components/Loader/Loader';
 import { getMovieDetails } from 'TMDB_API/TMDB_API';
-import MoviesInfo from 'components/MoviesDetails/MoviesInfo';
+import MoviesInfo from 'components/MoviesInfo/MoviesInfo';
 import { Link } from 'components/App.styled';
 
 const MovieDetails = () => {

@@ -1,14 +1,13 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useSearchParams, useLocation } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { searchMovies } from 'TMDB_API/TMDB_API';
 import Searchbar from 'components/Searchbar/Searchbar';
-import MoviesList from 'components/MoviesDetails/MoviesList';
+import MoviesList from 'components/MoviesList/MoviesList';
 
 const Movies = () => {
   const [filmsByQ, setFilmsByQ] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const filmName = searchParams.get('name') ?? '';
-  const location = useLocation();
 
   useEffect(() => {
     if (!filmName) {
@@ -32,7 +31,7 @@ const Movies = () => {
     fetchFilms();
   }, [filmName]);
 
-  const visibleMovies = useMemo(() => {
+  const moviesSearch = useMemo(() => {
     return filmsByQ.filter(film => film.title.toLowerCase().includes(filmName));
   }, [filmsByQ, filmName]);
 
@@ -56,8 +55,8 @@ const Movies = () => {
     <main>
       <Searchbar onSubmit={handleFormSubmit} />
 
-      {visibleMovies && (
-        <MoviesList visibleMovies={visibleMovies} state={{ from: location }} />
+      {moviesSearch && (
+        <MoviesList moviesSearch={moviesSearch} />
       )}
     </main>
   );
